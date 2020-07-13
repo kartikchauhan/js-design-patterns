@@ -197,3 +197,84 @@
     // should log
     // B is invoked with the context as hello
     ```
+## Difference between The Observer and Publish/Subscribe Pattern:
+* The Observer pattern requires that the observer (or object) wishing to receive topic notifications must subscribe this interest to the object firing the event (the subject).
+
+* The Publish/Subscribe pattern however uses a topic/event channel which sits between the objects wishing to receive notifications (subscribers) and the object firing the event (the publisher).
+
+* The con of using Observer pattern is Observables only maintain one array for keeping observers(in the above example, the array is `observersList`). It doesn't differentiate how the update is triggered because it only has one `notify` function, which triggers all the functions stored in the array.
+
+* If we want to group observers handlers based on different events. We just need to modify that `observersList` to an object like,
+    ```ts
+    let events = {
+        'event1': [handler1, handler2],
+        'event2': [handler2, handler3]
+    };
+    ```
+and, this variation is generally known as `pub/sub`. So you can trigger different functions based on the `events` you published.
+
+* Implementation for Pub/Sub:
+    ```ts
+    function Pubsub() {
+        this.events = {};
+    }
+
+    Pubsub.prototype.publish = function(event, args) {
+        if(!this.events[event]) {
+            return false;
+        }
+
+        const subscribers = this.events[event];
+        const len = subscribers ? subscribers.length : 0;
+
+        while (len--) {
+            subscribers[len]();
+        }
+        return this;
+    }
+
+    Pubsub.prototype.subscribe = function(event, func) {
+        if(!this.events[event]) {
+            this.events[event] = [];
+        }
+        this.events[event].push(func);
+    }
+
+    Pubsub.prototype.unsubscribe = function(event, func) {
+        const self = this;
+        if(this.events[event]) {
+            this.events[event].forEach(function(el, index) {
+                if (el == func) {
+                    self.events.splice(index, 1);
+                }
+            })
+        }
+    }
+
+    const pubsub = new Pubsub();
+
+    const eat = function() {
+        console.log("I am eating");
+    }
+
+    const drink = function() {
+        console.log("I am drinking");
+    }
+
+    const running = function() {
+        console.log("I am running");
+    }
+
+    pubsub.subscribe("dinner", eat);
+    pubsub.subscribe("dinner", drink);
+    pubsub.subscribe("sports", running);
+
+    pubsub.publish("dinner");
+    // should log
+    // I am drinking
+    // I am eating
+
+    pubsub.publish("sports")
+    // should log
+    // I am running
+    ```
