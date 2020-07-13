@@ -202,6 +202,10 @@
 
 * The Publish/Subscribe pattern however uses a topic/event channel which sits between the objects wishing to receive notifications (subscribers) and the object firing the event (the publisher).
 
+* The observer pattern is mostly implemented synchronously, i.e. the Subject calls the appropriate method of all its observers when an event occurs. The publisher-subscriber pattern is mostly implemented asynchronously (using a message queue).
+
+* The observer pattern needs to be implemented in a single-application address space. On the other hand, the publisher-subscriber pattern is more of a cross-application pattern.
+
 * The con of using Observer pattern is Observables only maintain one array for keeping observers(in the above example, the array is `observersList`). It doesn't differentiate how the update is triggered because it only has one `notify` function, which triggers all the functions stored in the array.
 
 * If we want to group observers handlers based on different events. We just need to modify that `observersList` to an object like,
@@ -212,6 +216,21 @@
     };
     ```
 and, this variation is generally known as `pub/sub`. So you can trigger different functions based on the `events` you published.
+
+* [Observer vs Pub/Sub Pattern](https://medium.com/better-programming/observer-vs-pub-sub-pattern-50d3b27f838c#:~:text=In%20the%20observer%20pattern%2C%20the,message%20queues%20or%20a%20broker.)
+
+* [Difference between Observer & Pub/Sub pattern](https://stackoverflow.com/a/38275499/6352772)
+
+## Publish/Subscribe Pattern:
+* Publish/Subscribe fits in very well in JavaScript ecosystems, largely because at the core, ECMAScript implementations are event driven.
+
+* In the Publisher/Subscriber pattern, senders of messages, called publishers, do not program the messages to be sent directly to specific receivers, called subscribers.
+
+* This means that Publisher and Subscribers don't know about each others identities.
+
+* There's generally a third component involved, called *broker*, *message broker*, or *event bus*, which is known by both Publisher and Subscribers.
+
+* A broker filters out the messages on the basis of several processes, topic-based, content-based being the most popular ones.
 
 * Implementation for Pub/Sub:
     ```ts
