@@ -53,3 +53,47 @@ var myObjectLiteral = {
     Here, other parts of the code are unable to directly read the value of `incrementCounter` or `resetCounter`. The counter variable is actually shielded from our global scope, acting just like a private variable.
 
     The module created is self-sustained in global variable `testModule`.
+
+## The Revealing Pattern:
+
+## The Singleton Pattern:
+* The singleton pattern can be implemented by creating a class with a method that creates a new instance of the class if one doesn't exist. In the event of one already existing, it simply returns a reference to that object.
+
+* Implementation in JS:
+    ```ts
+    const mySingleton = (function() {
+        let instance;
+
+        function init() {
+            function privateMethod() {
+                console.log(`I'm a private method`);
+            }
+
+            let privateVariable = `I'm a private variable`;
+            let privateRandomNumber = Math.random();
+
+            return {
+                publicMethod: function() {
+                    console.log(`I'm a public method`);
+                },
+                publicProperty: `I'm a public property`,
+                getRandomNumber: function() {
+                    return privateRandomNumber;
+                }
+            };
+        }
+
+        return {
+            getInstance: function() {
+                if(!instance) {
+                    instance = init();
+                }
+                return instance;
+            }
+        }
+    }());
+
+    let singletonInstanceA = mySingleton.getInstance();
+    let singletonInstanceB = mySingleton.getInstance();
+    console.log(singletonInstanceA.getRandomNumber() === singletonInstanceB.getRandomNumber()); // true
+    ```
