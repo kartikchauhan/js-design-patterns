@@ -129,6 +129,11 @@
 
 * The Observer pattern facilitates good object-oriented design and promotes loose coupling.
 
+* The definition of the Observer pattern provided in the *GoF* book, *Design Patterns: Elements of Reusable Object-Oriented Software*, is:
+
+    > One or more observers are interested in the state of a subject and register their interest with the subject by attaching themselves. When something changes in our subject that the observer may be interested in, a notify message is sent which calls the update method in each observer. When the observer is no longer interested in the subject's state, they can simply detach themselves.
+
+
 * Participants:
     * Subject:
         * Maintains a list of observers. Any number of Observer objects may observe a Subject.
@@ -138,3 +143,57 @@
     * Observer:
         * Has a function signature that can be invoked when Subject's state changes(i.e. event occurs).
 
+* Implementation:
+    ```ts
+    // This is the object that once its state changes, it will notify all the observers.
+    function Observable() {
+        this.observersList = [];
+    }
+
+    Observable.prototype.addObserver = function(observer) {
+        this.observersList.push(observer);
+    }
+
+    Observable.prototype.removeObserver = function(observer) {
+        var self = this;
+        this.observersList.forEach(function(el, index) {
+            if (el === observer) {
+                self.observersList.splice(index, 1);
+            }
+        })
+    }
+
+    Observable.prototype.notify = function(context) {
+        for (var i = 0; i < this.observersList.length; i++) {
+            this.observersList[i].update(context);
+        }
+    }
+
+    // will get notified if any changes happend on Observable
+    function Observer(name) {
+        this.name = name;
+        var self = this;
+        this.update = function(context) {
+            console.log(`${self.name} is invoked with the context ${context}`);
+        }
+    }
+
+    var observable = new Observable();
+
+    var observerA = new Observer("A");
+    var observerB = new Observer("B");
+
+    observable.addObserver(observerA);
+    observable.addObserver(observerB);
+
+    observable.notify("hello");
+    // should log
+    // A is invoked with the context as hello
+    // B is invoked with the context as hello
+
+    observable.removeObserver(observerA);
+
+    observable.notify("hello");
+    // should log
+    // B is invoked with the context as hello
+    ```
