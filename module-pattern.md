@@ -1,22 +1,23 @@
 ## In Javascript, there are several options for implementing modules. These include:
 
- * The Module pattern
- * Object Literal notation
- * AMD modules
- * CommonJS modules
- * ECMAScript Harmony modules
+* The Module pattern
+* Object Literal notation
+* AMD modules
+* CommonJS modules
+* ECMAScript Harmony modules
 
 ## Oject Literals:
-In object literal notation, an object is described as a set of comma-separated name/value pairs enclosed in curly braces.
+* In object literal notation, an object is described as a set of comma-separated name/value pairs enclosed in curly braces.
 
-```ts
-var myObjectLiteral = {
-    variableKey: variableValue,
-    functionKey: function () {
-        // ...
-    }
-};
-```
+* Implementation:
+    ```ts
+    var myObjectLiteral = {
+        variableKey: variableValue,
+        functionKey: function () {
+            // ...
+        }
+    };
+    ```
 
 ## The Module Pattern:
 * The module pattern was originally created as a way to provide both public and private encapsulation for classes in conventional Software engineering.
@@ -55,7 +56,7 @@ var myObjectLiteral = {
     The module created is self-sustained in global variable `testModule`.
 
 ## The Revealing Pattern:
-
+<span style="color:red">Description to be added.</span>
 ## The Singleton Pattern:
 * The singleton pattern can be implemented by creating a class with a method that creates a new instance of the class if one doesn't exist. In the event of one already existing, it simply returns a reference to that object.
 
@@ -120,3 +121,20 @@ var myObjectLiteral = {
         };
         ```
         Here, `getInstance` becomes a little like a Factory methodand we don't need to update each point in our code accessing it.
+
+## The Observer Pattern:
+* The Observer pattern offers a subscription model in which objects subscribe to an event and get notified when the event occurs.
+
+* This pattern is the cornerstone of event driven programming.
+
+* The Observer pattern facilitates good object-oriented design and promotes loose coupling.
+
+* Participants:
+    * Subject:
+        * Maintains a list of observers. Any number of Observer objects may observe a Subject.
+        * Implements an interface that lets Observer objects subscribe/unsubscribe to the Subject.
+        * Sends a notification to the Observer objects when its state changes.
+
+    * Observer:
+        * Has a function signature that can be invoked when Subject's state changes(i.e. event occurs).
+
