@@ -197,6 +197,7 @@
     // should log
     // B is invoked with the context as hello
     ```
+
 ## Difference between The Observer and Publish/Subscribe Pattern:
 * The Observer pattern requires that the observer (or object) wishing to receive topic notifications must subscribe this interest to the object firing the event (the subject).
 
@@ -220,6 +221,7 @@ and, this variation is generally known as `pub/sub`. So you can trigger differen
 * [Observer vs Pub/Sub Pattern](https://medium.com/better-programming/observer-vs-pub-sub-pattern-50d3b27f838c#:~:text=In%20the%20observer%20pattern%2C%20the,message%20queues%20or%20a%20broker.)
 
 * [Difference between Observer & Pub/Sub pattern](https://stackoverflow.com/a/38275499/6352772)
+
 
 ## Publish/Subscribe Pattern:
 * Publish/Subscribe fits in very well in JavaScript ecosystems, largely because at the core, ECMAScript implementations are event driven.
@@ -297,3 +299,14 @@ and, this variation is generally known as `pub/sub`. So you can trigger differen
     // should log
     // I am running
     ```
+
+Refereces:
+* https://dzone.com/articles/design-patterns-mediator
+
+
+## The Mediator Pattern:
+* Mediator is a behavioral design pattern that allows us to expose a unified interface through which the different parts of a system can communicate.
+
+* If it appears that a system has too many direct relationships between the components, then it might be better to have a central point of control that components communicate throught instead.
+
+* A real-world analogy could be a typical airport traffic control system. A tower (Mediator) handles what planes can take off and land because all communications (notifications being listened out for or broadcast) are done from the planes to the control tower, rather than from plane-to-plane. A centralized controller is key to the success of this system and that's really the role a Mediator plays in software design.
