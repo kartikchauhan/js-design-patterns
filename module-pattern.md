@@ -383,5 +383,32 @@ and, this variation is generally known as `pub/sub`. So you can trigger differen
 
 * Command objects can be thought of as "tokens" that are created by one client that knows what need to be done, and passed to another client that has the resources for doing it.
 
+* Implementation:
+    ```ts
+    const carManager = {
+       // request information
+        requestInfo: function(model, id) {
+            return `The information for ${model} with ID ${id} is foobar`;
+        },
+
+        // purchase the car
+        buyVehicle: function(model, id) {
+            return `You have successfully purchased Item ${id}, a${model}`;
+        },
+
+        // arrange a viewing
+        arrangeViewing: function(model, id) {
+            return `You have successfully booked a viewing of ${model} (${id})`;
+        }
+    };
+
+    carManager.execute = function(name) {
+        return carManager[name] && carManager[name].apply(carManager, [].slice.call(arguments, 1));
+    };
+
+    carManager.execute("arrangeViewing", "Ferrari", "14523");
+    carManager.execute("requestInfo", "Ford Mondeo", "54323");
+    ```
+
 * References:
     * https://sourcemaking.com/design_patterns/command
