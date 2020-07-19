@@ -443,3 +443,47 @@ and, this variation is generally known as `pub/sub`. So you can trigger differen
         window.attachEvent( 'onload', jQuery.ready);
         ...
     ```
+
+* Facades can also be integrated with other patterns such as the Module pattern.
+
+* Implementation:
+    ```ts
+    var module = (function() {
+        var _private = {
+            i: 5,
+
+            get: function() {
+                console.log(`current value: ${this.i}`);
+            },
+
+            set: function(val) {
+                // add guard clauses, validate the value
+                this.i = val;
+            },
+
+            run: function() {
+                console.log('running');
+            },
+
+            jump: function() {
+                console.log('jumping');
+            }
+        };
+
+        return {
+            facade: function(args) {
+                _private.set(args.val);
+                _private.get();
+
+                if(args.run) {
+                    _private.run();
+                }
+            }
+        };
+    }());
+
+    // Outputs: "current value: 10" and "running"
+    module.facade({ run: true, val: 10 });
+    ```
+
+    In this example, calling `module.facade()` will actually trigger a set of private behavior within the module, but the user doesn't need to be concerned with this.
