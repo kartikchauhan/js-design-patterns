@@ -410,5 +410,9 @@ and, this variation is generally known as `pub/sub`. So you can trigger differen
     carManager.execute("requestInfo", "Ford Mondeo", "54323");
     ```
 
+* Submit transaction either using CLI or any sdk can be thought of as a good example of the command pattern.
+
+    `await contract.submitTransaction('createCar', 'CAR12', 'Honda', 'Accord', 'Black', 'Tom');`
+
 * References:
     * https://sourcemaking.com/design_patterns/command
