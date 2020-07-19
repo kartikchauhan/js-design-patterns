@@ -300,9 +300,8 @@ and, this variation is generally known as `pub/sub`. So you can trigger differen
     // I am running
     ```
 
-Refereces:
-* https://dzone.com/articles/design-patterns-mediator
-
+* References:
+    * https://dzone.com/articles/design-patterns-mediator
 
 ## The Mediator Pattern:
 * Mediator is a behavioral design pattern that allows us to expose a unified interface through which the different parts of a system can communicate.
@@ -368,3 +367,21 @@ Refereces:
         }
     });
     ```
+
+## The Command Pattern:
+* Command decouples the object that invokes the operation from the one that knows how to perform it.
+
+* To achieve this separation, the designer creates an absract base class that maps a receiver(an object) with an action(a pointer to a member function). The base class contains an `execute` method that simply calls the action on the receiver.
+
+* All clients of Command objects treat each object as "black box" by simply invoking the object's virtual `execute()` method whenever the client requires the object's service.
+
+* A command class holds some subset of the following: an object, a method to be applied to the object, and the arguments to be passed when the method is applied. The command's `execute` method then causes the pieces to come together.
+
+* The client that creates a command is not the same client that executes it. This separation provides flexibilty in the timing and sequencing of commands.
+
+* Materlializing commands as objects means they can be passed, staged, shared, loaded in a table, and otherwise instrumented or manipulated like any other object.
+
+* Command objects can be thought of as "tokens" that are created by one client that knows what need to be done, and passed to another client that has the resources for doing it.
+
+* References:
+    * https://sourcemaking.com/design_patterns/command
