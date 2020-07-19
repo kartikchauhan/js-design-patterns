@@ -327,3 +327,10 @@ Refereces:
 * An event aggregator facilitates a "fire & forget" model of communication. The object triggering the events doesn't care if there're any subscribers.
 
 * A Mediator is not "fire & forget". A Mediator pays attention to a known set of input or activities so that it can facilitate and coordinate additional behavior with a known set of actors(objects).
+
+## The Prototype Pattern:
+* The *GoF* refer to the prototype pattern as one which creates objects based on a template of an existing object through cloning.
+
+* We can think of the prototype pattern as being based on prototypal inheritance where we create objects which act as the prototype for other objects. The prototype object itself is effectively used a blueprint for each object the constructor creates.
+
+* One of the benefits of using the prototypal pattern is that we're working with the prototypal strengths Javascript has to offer natively rather than attempting to imitate features of other languages.
