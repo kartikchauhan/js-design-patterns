@@ -416,3 +416,30 @@ and, this variation is generally known as `pub/sub`. So you can trigger differen
 
 * References:
     * https://sourcemaking.com/design_patterns/command
+
+## The Facade Pattern:
+* When we put up a facade, we present an outward appearance to the world which many conceal a very different reality. This was the inspiration for the name behind this pattern.
+
+* This pattern provides a convenient higher-level interface to a larger body of code, hiding its true underlying complexity.
+
+* Whenever we use Jquery's `$(el).css()` or `$(el).animate()` methods, we're actually using a facade- the simpler public interface that avoids us having to manually call the many internal methods in JQuery core required to get some behavior working.
+
+* We're all familiar with Jquery's `$(document).ready(..)`. Internally , this is actually being powered by a method called `bindReady()`, which is doing this
+    ```ts
+    bindReady: function() {
+    ...
+    if (document.addEventListener) {
+        // Use the handy event callback
+        document.addEventListener('DOMContentLoaded', DOMContentLoaded, false);
+
+        // A fallback to window.onload, that will always work
+        window.addEventListener('load', jQuery.ready, false);
+
+        // If IE event model is used
+    } else if (document.attachEvent) {
+        document.attachEvent('onreadystatechange', DOMContentLoaded);
+
+        // A fallback to window.onload, that will always work
+        window.attachEvent( 'onload', jQuery.ready);
+        ...
+    ```
