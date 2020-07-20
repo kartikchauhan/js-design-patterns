@@ -56,7 +56,7 @@
     The module created is self-sustained in global variable `testModule`.
 
 ## The Revealing Pattern:
-<span style="color:red">Description to be added.</span>
+<span style='color:red'>Description to be added.</span>
 ## The Singleton Pattern:
 * The singleton pattern can be implemented by creating a class with a method that creates a new instance of the class if one doesn't exist. In the event of one already existing, it simply returns a reference to that object.
 
@@ -180,20 +180,20 @@
 
     var observable = new Observable();
 
-    var observerA = new Observer("A");
-    var observerB = new Observer("B");
+    var observerA = new Observer('A');
+    var observerB = new Observer('B');
 
     observable.addObserver(observerA);
     observable.addObserver(observerB);
 
-    observable.notify("hello");
+    observable.notify('hello');
     // should log
     // A is invoked with the context as hello
     // B is invoked with the context as hello
 
     observable.removeObserver(observerA);
 
-    observable.notify("hello");
+    observable.notify('hello');
     // should log
     // B is invoked with the context as hello
     ```
@@ -275,27 +275,27 @@ and, this variation is generally known as `pub/sub`. So you can trigger differen
     const pubsub = new Pubsub();
 
     const eat = function() {
-        console.log("I am eating");
+        console.log('I am eating');
     }
 
     const drink = function() {
-        console.log("I am drinking");
+        console.log('I am drinking');
     }
 
     const running = function() {
-        console.log("I am running");
+        console.log('I am running');
     }
 
-    pubsub.subscribe("dinner", eat);
-    pubsub.subscribe("dinner", drink);
-    pubsub.subscribe("sports", running);
+    pubsub.subscribe('dinner', eat);
+    pubsub.subscribe('dinner', drink);
+    pubsub.subscribe('sports', running);
 
-    pubsub.publish("dinner");
+    pubsub.publish('dinner');
     // should log
     // I am drinking
     // I am eating
 
-    pubsub.publish("sports")
+    pubsub.publish('sports')
     // should log
     // I am running
     ```
@@ -339,7 +339,7 @@ and, this variation is generally known as `pub/sub`. So you can trigger differen
 * Implementation:
     ```ts
     const Car = {
-        name: "Ford Escort",
+        name: 'Ford Escort',
 
         drive: function() {
             console.log(`See, I'm driving!`);
@@ -406,8 +406,8 @@ and, this variation is generally known as `pub/sub`. So you can trigger differen
         return carManager[name] && carManager[name].apply(carManager, [].slice.call(arguments, 1));
     };
 
-    carManager.execute("arrangeViewing", "Ferrari", "14523");
-    carManager.execute("requestInfo", "Ford Mondeo", "54323");
+    carManager.execute('arrangeViewing', 'Ferrari', '14523');
+    carManager.execute('requestInfo', 'Ford Mondeo', '54323');
     ```
 
 * Submit transaction either using CLI or any sdk in Hyperledger Fabric can be thought of as a good example of the command pattern.
@@ -494,3 +494,65 @@ and, this variation is generally known as `pub/sub`. So you can trigger differen
 * Imagine that we have a UI factory where we are asked to create a type of UI component. Rather than creating this component directly using the `new` operator or via another creational pattern, we ask a Factory object for a new component instead. We inform the Factory what type of object is required(eg. Button, panel) and it instantiates it for us.
 
 * This is particulary helpful if the object creation process is relatively complex.
+
+* Implementation:
+    ```ts
+    // A constructor for defining new cars
+    function Car(options) {
+        // some defaults
+        this.doors = options.doors || 4;
+        this.state = options.state || 'brand new';
+        this.color = options.color || 'silver';
+
+    }
+
+    // A constructor for defining new trucks
+    function Truck(options) {
+        this.state = options.state || 'used';
+        this.wheelSize = options.wheelSize || 'large';
+        this.color = options.color || 'blue';
+    }
+
+    // FactoryExample.js
+
+    // Define a skeleton vehicle factory
+    function VehicleFactory() { }
+
+    // Define the prototypes and utilities for this factory
+
+    // Our default vehicleClass is Car
+    VehicleFactory.prototype.vehicleClass = Car;
+
+    // Our Factory method for creating new Vehicle instances
+    VehicleFactory.prototype.createVehicle = function(options) {
+
+        switch (options.vehicleType) {
+            case 'car':
+                this.vehicleClass = Car;
+                break;
+            case 'truck':
+                this.vehicleClass = Truck;
+                break;
+            //defaults to VehicleFactory.prototype.vehicleClass (Car)
+        }
+
+        return new this.vehicleClass(options);
+
+    };
+
+    // Create an instance of our factory that makes cars
+    var carFactory = new VehicleFactory();
+    var car = carFactory.createVehicle({
+        vehicleType: 'car',
+        color: 'yellow',
+        doors: 6
+    });
+
+    // Test to confirm our car was created using the vehicleClass/prototype Car
+
+    // Outputs: true
+    console.log(car instanceof Car);
+
+    // Outputs: Car object of color "yellow", doors: 6 in a "brand new" state
+    console.log(car);
+    ```
