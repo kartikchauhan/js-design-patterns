@@ -487,3 +487,10 @@ and, this variation is generally known as `pub/sub`. So you can trigger differen
     ```
 
     In this example, calling `module.facade()` will actually trigger a set of private behavior within the module, but the user doesn't need to be concerned with this.
+
+## The Factory Pattern:
+* A creational pattern, that doesn't explicitly require us to use a constructor. Instead a Factory can provide a generic interface for creating objects, where we can specify the type of factory object we wish to be created.
+
+* Imagine that we have a UI factory where we are asked to create a type of UI component. Rather than creating this component directly using the `new` operator or via another creational pattern, we ask a Factory object for a new component instead. We inform the Factory what type of object is required(eg. Button, panel) and it instantiates it for us.
+
+* This is particulary helpful if the object creation process is relatively complex.
