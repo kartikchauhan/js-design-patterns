@@ -632,3 +632,6 @@ ISchool school = SchoolFactory.ConstructForStudent(myStudent);
 Now you have one place in your app that contains business logic that determines what ISchool object to instantiate for different IStudent objects.
 
 So - for simple classes (value objects, etc.) constructor is just fine (you don't want to overengineer your application) but for complex class hierarchies factory method is a preferred way.
+
+### References:
+* https://stackoverflow.com/a/629006/6352772
