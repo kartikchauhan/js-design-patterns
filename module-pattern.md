@@ -670,3 +670,53 @@ So - for simple classes (value objects, etc.) constructor is just fine (you don'
     // Outputs Person attributes as well as powers
     ```
     The `Superhero` constructor creates an oject which descends from `Person`.
+
+### Mixins:
+* Each new object we define has a prototype from which it can inherit further properties.
+
+* Prototypes can inherit from other object prototypes but, even more importantly, can define properties for any number of object instances. This can be leveraged to promote function re-use.
+
+* example:
+    ```ts
+    const myMixins = {
+        moveUp: function() {
+            console.log("move up");
+        },
+        moveDown: function() {
+            console.log("move down");
+        },
+        stop: function() {
+            console.log("stop! in the name of love!");
+        }
+    };
+    ```
+    We can then easily extend the prototype of existing constructor functions to include this behavior using a helper such as the lodash `_.extend()` method:
+
+    ```ts
+    // A skeleton carAnimator constructor
+    function CarAnimator() {
+        this.moveLeft = function () {
+            console.log("move left");
+        };
+    }
+
+    // A skeleton personAnimator constructor
+    function PersonAnimator() {
+        this.moveRandomly = function () { /*..*/ };
+    }
+
+    // Extend both constructors with our Mixin
+    _.extend(CarAnimator.prototype, myMixins);
+    _.extend(PersonAnimator.prototype, myMixins);
+
+    // Create a new instance of carAnimator
+    var myAnimator = new CarAnimator();
+    myAnimator.moveLeft();
+    myAnimator.moveDown();
+    myAnimator.stop();
+
+    // Outputs:
+    // move left
+    // move down
+    // stop! in the name of love!
+    ```
