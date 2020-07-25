@@ -22,16 +22,16 @@ Excerpts and code-snippets from Addy Osmani's [Learning Javascript Design Patter
 * Some behavioral patterns include: *Iterator*, *Mediator*, *Observer* and *Visitor*.
 
 ### Index:
-* [Constructor Pattern](constructor-pattern.md){:target="_blank"}
-* Module Pattern
-* Revealing Module Pattern
-* Singleton Pattern
-* Observer Pattern
-* Mediator Pattern
-* Prototype Pattern
-* Command Pattern
-* Facade Pattern
-* Factory Pattern
-* Mixin Pattern
-* Decorator Pattern
-* Flyweight Pattern
+* [Constructor Pattern](./constructor-pattern.md)
+* [Module Pattern](./module-pattern.md)
+* [Revealing Module Pattern](./revealing-module-pattern.md)
+* [Singleton Pattern](./singleton-pattern.md)
+* [Observer Pattern](./observer-pattern.md)
+* [Mediator Pattern](./mediator-pattern.md)
+* [Prototype Pattern](./prototype-pattern.md)
+* [Command Pattern](./command-pattern.md)
+* [Facade Pattern](./facade-pattern.md)
+* [Factory Pattern](./factory-pattern.md)
+* [Mixin Pattern](./mixin-pattern.md)
+* [Decorator Pattern](./decorator-pattern.md)
+* [Flyweight Pattern](./flyweight-pattern.md)
