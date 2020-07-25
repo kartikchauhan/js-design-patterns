@@ -21,3 +21,5 @@
 * An event aggregator facilitates a "fire & forget" model of communication. The object triggering the events doesn't care if there're any subscribers.
 
 * A Mediator is not "fire & forget". A Mediator pays attention to a known set of input or activities so that it can facilitate and coordinate additional behavior with a known set of actors(objects).
+
+<span style="color:red">Note</span>: Implementation of Mediator pattern in Java can be found [here](./mediator-pattern.java).
