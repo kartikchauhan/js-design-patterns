@@ -15,3 +15,8 @@ Excerpts and code-snippets from Addy Osmani's [Learning Javascript Design Patter
 * They also assist in recasting parts of the system which don't fit a particular purpose into those that do.
 
 * Patterns that fall under this category include: *Decorator*, *Facade*, *Flyweight*, *Adapter* and *Proxy*.
+
+### Behavioral Design Patterns:
+* Behavioral patterns focus on improving or streamlining the communication between disparate objects in a system.
+
+* Some behavioral patterns include: *Iterator*, *Mediator*, *Observer* and *Visitor*.
