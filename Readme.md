@@ -35,3 +35,8 @@ Excerpts and code-snippets from Addy Osmani's [Learning Javascript Design Patter
 * [Mixin Pattern](./mixin-pattern.md)
 * [Decorator Pattern](./decorator-pattern.md)
 * [Flyweight Pattern](./flyweight-pattern.md)
+
+### Javascript MV* Patterns:
+* MVC(Model-View-Controller)
+* MVP(Model-View-Presenter)
+* MVVM(Model-View-ViewModel)
