@@ -30,7 +30,7 @@ console.log(civic.toString());
 console.log(mondeo.toString());
 ```
 
-* The problem with above method is that every object will have its own copy of `toString` method with is not very efficient.
+* The problem with above method is that every object will have its own copy of `toString` method which is not very efficient.
 
 ## Constructors With Prototypes:
 ```ts
